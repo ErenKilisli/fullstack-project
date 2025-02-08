@@ -263,7 +263,7 @@ app.post("/blog/api", csrfProtection, (request, response) => {
         logger.info(request.body); //logger: Winston
         logger.info("Dolu gövde alındı."); //logger: Winston
     }
-    const BlogModel = require("./models/mongoose_blog_models"); // Modeli ekleyin
+    const BlogModel = require("../models/mongoose_blog_models"); // Modeli ekleyin
     const newBlog = new BlogModel(blogData);
     newBlog
         .save()
