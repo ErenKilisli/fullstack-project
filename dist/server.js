@@ -91,7 +91,7 @@ const databaseLocalUrl = process.env.MONGO_USERNAME && process.env.MONGO_PASSWOR
 const databaseDockerUrl = "mongodb://localhost:27000/blogDB";
 // MongoDB Cloud (username,password)
 // 3.YOL (CLOUD)
-const databaseCloudUrl = "mongodb+srv://hamitmizrak:<password>@offlinenodejscluster.l3itd.mongodb.net/?retryWrites=true&w=majority&appName=OfflineNodejsCluster";
+const databaseCloudUrl = "mongodb+srv://ierenkilisli:process.env.MONGO_PASSWORD.ft6c1.mongodb.net/blogDB?retryWrites=true&w=majority";
 // 4.YOL (.dotenv)
 require("dotenv").config();
 // Localhostta MongoDB yüklüyse)
