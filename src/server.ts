@@ -103,8 +103,9 @@ const databaseDockerUrl = "mongodb://localhost:27000/blogDB";
 
 // MongoDB Cloud (username,password)
 // 3.YOL (CLOUD)
-const databaseCloudUrl =
-  "mongodb+srv://ierenkilisli:process.env.MONGO_PASSWORD.ft6c1.mongodb.net/blogDB?retryWrites=true&w=majority";
+const databaseCloudUrl = 
+"mongodb+srv://ierenkilisli:process.env.MONGO_PASSWORD.ft6c1.mongodb.net/blogDB?retryWrites=true&w=majority";
+
 
 // 4.YOL (.dotenv)
 require("dotenv").config();
@@ -126,14 +127,14 @@ const dataUrl = [
 //mongoose.connect(`${databaseCloudUrl}`, {useNewUrlParser:true, useUnifiedTopology:true}) // Eski MongoDB sürümleride
 
 mongoose
-  // .connect(`${databaseDockerUrl}`)
-  .connect(`${databaseLocalUrl}`)
+  .connect(databaseCloudUrl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Mongo DB Başarıyla Yüklendi");
   })
-  .catch((err:any) => {
+  .catch((err: any) => {
     console.error("Mongo DB Bağlantı Hatası", err);
   });
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MIDDLEWARE
 // Middleware'leri dahil et
@@ -240,7 +241,7 @@ Kullanıcı browser üzerinden oturum açtığında ve kimlik doğrulama bilgile
 // app.use(express.static("public"));
 // 📌 Statik Dosya Servisi (index44.html'nin çalışması için)
 import path from "path";
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../public"))); 
 
 
 
@@ -350,26 +351,24 @@ app.set("view engine", "ejs");
 const blogRoutes = require("../routes/blog_api_routes");
 const { request } = require("http");
 
+app.use(cookieParser());
+app.use(csrfProtection);
+
+
 // http://localhost:1111/blog
 app.use("/blog/", blogRoutes);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 📌 Register Routes (register sayfasını yönetmek için)
-const registerRoutes = require("../routes/blog_register_routes");
-app.use("/register", registerRoutes); // nyter: register route tanımlandı
 
-// 📌 Register Sayfası
-app.get("/register", (req: any, res: any) => {
-    try {
-        res.render("register", {
-            csrfToken: req.csrfToken(),
-            title: "Üye Ol",
-        });
-    } catch (error) {
-        console.error("Register sayfası render edilirken hata:", error);
-        res.status(500).send("Bir hata oluştu");
-    }
-});
+app.use(cookieParser());
+app.use(csrfProtection);
+
+// 📌 Register Routes (register sayfasını yönetmek için)
+const registerRoutes = require("../routes/blog_register_routes"); 
+app.use("/register", registerRoutes);
+
+
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

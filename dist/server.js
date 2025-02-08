@@ -107,8 +107,7 @@ const dataUrl = [
 // 2.YOL
 //mongoose.connect(`${databaseCloudUrl}`, {useNewUrlParser:true, useUnifiedTopology:true}) // Eski MongoDB sürümleride
 mongoose
-    // .connect(`${databaseDockerUrl}`)
-    .connect(`${databaseLocalUrl}`)
+    .connect(databaseCloudUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
     console.log("Mongo DB Başarıyla Yüklendi");
 })
@@ -287,25 +286,16 @@ app.set("view engine", "ejs");
 // Router (Rotalar)
 const blogRoutes = require("../routes/blog_api_routes");
 const { request } = require("http");
+app.use(cookieParser());
+app.use(csrfProtection);
 // http://localhost:1111/blog
 app.use("/blog/", blogRoutes);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.use(cookieParser());
+app.use(csrfProtection);
 // 📌 Register Routes (register sayfasını yönetmek için)
 const registerRoutes = require("../routes/blog_register_routes");
-app.use("/register", registerRoutes); // nyter: register route tanımlandı
-// 📌 Register Sayfası
-app.get("/register", (req, res) => {
-    try {
-        res.render("register", {
-            csrfToken: req.csrfToken(),
-            title: "Üye Ol",
-        });
-    }
-    catch (error) {
-        console.error("Register sayfası render edilirken hata:", error);
-        res.status(500).send("Bir hata oluştu");
-    }
-});
+app.use("/register", registerRoutes);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 404 Hata sayfası
