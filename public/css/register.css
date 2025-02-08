@@ -1,0 +1,57 @@
+/* register.css */
+body {
+    background: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 500px;
+    margin-top: 50px;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    width: 100%;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    background-color: #28a745;
+    color: white;
+    text-align: center;
+    border-radius: 10px 10px 0 0 !important;
+    padding: 20px;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+}
+
+.mt-3 a {
+    color: #28a745;
+    text-decoration: none;
+}
+
+.mt-3 a:hover {
+    text-decoration: underline;
+}

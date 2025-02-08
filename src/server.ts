@@ -14,7 +14,8 @@ console.info("server.js Server 1111 portunda ayağa kalktı");
 // DİKKAT: index.ts  import("express") kullanılır.
 
 // Express Import
-const express = require("express");
+import express from 'express';
+const app = express();
 
 // Mongoose Import
 const mongoose = require("mongoose");
@@ -36,9 +37,6 @@ const helmet = require("helmet");
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // bodyParser Import
 const bodyParser = require("body-parser");
-
-// App Import
-const app = express();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -354,6 +352,24 @@ const { request } = require("http");
 
 // http://localhost:1111/blog
 app.use("/blog/", blogRoutes);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 📌 Register Routes (register sayfasını yönetmek için)
+const registerRoutes = require("../routes/blog_register_routes");
+app.use("/register", registerRoutes); // nyter: register route tanımlandı
+
+// 📌 Register Sayfası
+app.get("/register", (req: any, res: any) => {
+    try {
+        res.render("register", {
+            csrfToken: req.csrfToken(),
+            title: "Üye Ol",
+        });
+    } catch (error) {
+        console.error("Register sayfası render edilirken hata:", error);
+        res.status(500).send("Bir hata oluştu");
+    }
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

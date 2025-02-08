@@ -16,7 +16,8 @@ console.info("server.js Server 1111 portunda ayağa kalktı");
 // DİKKAT: index.js  require("express") kullanılır 
 // DİKKAT: index.ts  import("express") kullanılır.
 // Express Import
-const express = require("express");
+const express_1 = __importDefault(require("express"));
+const app = (0, express_1.default)();
 // Mongoose Import
 const mongoose = require("mongoose");
 // CSRF Import
@@ -32,8 +33,6 @@ const helmet = require("helmet");
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // bodyParser Import
 const bodyParser = require("body-parser");
-// App Import
-const app = express();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Winston logger yapılandırması
 const logger = winston.createLogger({
@@ -206,7 +205,7 @@ Kullanıcı browser üzerinden oturum açtığında ve kimlik doğrulama bilgile
 // app.use(express.static("public"));
 // 📌 Statik Dosya Servisi (index44.html'nin çalışması için)
 const path_1 = __importDefault(require("path"));
-app.use(express.static(path_1.default.join(__dirname, "../public")));
+app.use(express_1.default.static(path_1.default.join(__dirname, "../public")));
 // 📌 Ana Sayfa (`index44.html`) Yönlendirmesi
 app.get("/", (req, res) => {
     res.sendFile(path_1.default.join(__dirname, "public", "index.html"));
@@ -290,6 +289,23 @@ const blogRoutes = require("../routes/blog_api_routes");
 const { request } = require("http");
 // http://localhost:1111/blog
 app.use("/blog/", blogRoutes);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 📌 Register Routes (register sayfasını yönetmek için)
+const registerRoutes = require("../routes/blog_register_routes");
+app.use("/register", registerRoutes); // nyter: register route tanımlandı
+// 📌 Register Sayfası
+app.get("/register", (req, res) => {
+    try {
+        res.render("register", {
+            csrfToken: req.csrfToken(),
+            title: "Üye Ol",
+        });
+    }
+    catch (error) {
+        console.error("Register sayfası render edilirken hata:", error);
+        res.status(500).send("Bir hata oluştu");
+    }
+});
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 404 Hata sayfası
