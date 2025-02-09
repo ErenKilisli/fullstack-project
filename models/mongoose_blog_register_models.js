@@ -10,11 +10,11 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const UserSchema = new mongoose.Schema({
-    username: {  // 🔥 Burada firstname ve lastname yerine username kullanıyoruz
+    username: {  
         type: String,
         required: true,
         trim: true,
-        unique: true, // Kullanıcı adının benzersiz olmasını istiyorsanız
+        unique: true, // Kullanıcı adının benzersiz olması için
     },
     email: {
         type: String,

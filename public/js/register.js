@@ -14,18 +14,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         try {
-            const response = await fetch('/register', { // 🔥 '/register/api' yerine '/register' olmalı (route'ları kontrol et)
+            const response = await fetch('/register', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'CSRF-Token': formData._csrf // 🔥 CSRF tokeni burada iletiliyor
+                    'CSRF-Token': formData._csrf 
                 },
                 body: JSON.stringify(formData)
             });
 
             if (response.ok) {
                 alert('Kayıt başarılı!');
-                window.location.href = '/login'; // Başarılı kayıttan sonra login sayfasına yönlendir
+                window.location.href = '/login'; 
             } else {
                 const error = await response.json();
                 alert(error.message || 'Kayıt sırasında bir hata oluştu');

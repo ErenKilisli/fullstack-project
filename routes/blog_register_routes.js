@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const csrf = require("csurf");
 const cookieParser = require("cookie-parser");
 
-// Middleware
+
 router.use(cookieParser());
 const csrfProtection = csrf({ cookie: true });
 
