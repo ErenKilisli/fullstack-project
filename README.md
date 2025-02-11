@@ -1,5 +1,5 @@
 # Techcareer Frontend Full Stack- Dockerize
-[GitHub Address](https://github.com/hamitmizrak/2025_techcareer_frontend_fullstack_1.git)
+[GitHub Address](https://github.com/ErenKilisli/fullstack-project)
 [Mongo Database Cloud](https://www.mongodb.com/products/platform/cloud)
 [Mongo Database Download](https://www.mongodb.com/try/download/community)
 [Font Awesome](https://fontawesome.com/search?ic=free)
