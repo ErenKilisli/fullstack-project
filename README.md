@@ -1,13 +1,16 @@
 # Techcareer Frontend Full Stack- Dockerize
 [GitHub Address](https://github.com/ErenKilisli/fullstack-project)
+---
 [Mongo Database Cloud](https://www.mongodb.com/products/platform/cloud)
 [Mongo Database Download](https://www.mongodb.com/try/download/community)
+[Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install//)
+---
 [Font Awesome](https://fontawesome.com/search?ic=free)
 [Google Font](https://fonts.google.com/selection/embed)
+---
 [Bootstrap](https://getbootstrap.com/)
 [Box Shadow Online](https://cssgenerator.pl/en/box-shadow-generator/)
 [jQuery](https://jquery.com//)
-[Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install//)
 ---
 
 
